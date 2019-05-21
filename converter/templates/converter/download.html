@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Sending File</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="col-lg-5 col-offset-6 centered">
+    {% if success %}
+        <h4>{{ success }}</h4>
+    {% endif %}
+    <form method="post">
+    {% csrf_token %}
+        <div class="form-group">
+            <label for="url">Url</label>
+            {{ form.url.errors }}
+            <input type="text" class="form-control" id="url" name="url" placeholder="Enter url here">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            {{ form.email.errors }}
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email here">
+        </div>
+    <button type="submit" class="btn btn-success">Send</button>
+    </form>
+</div>
+{% endblock %}
