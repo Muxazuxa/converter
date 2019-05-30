@@ -9,10 +9,12 @@ from .tasks import convert_mp3
 def converter(request):
     form = DataForm(request.POST or None)
     if form.is_valid():
+        protocol = request.scheme
+        host = request.META['HTTP_HOST']
         url = form.cleaned_data.get('url')
         email = form.cleaned_data.get('email')
-        Data.objects.create(url=url, email=email)
-        convert_mp3.delay(url, email)
+        form.save()
+        convert_mp3.delay(url, email, protocol, host)
         return render(request, 'converter/download.html', {'form': form, 'success': 'Check your email {}'. format(email)})
     return render(request, 'converter/download.html', {'form': form})
 
