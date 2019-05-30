@@ -22,7 +22,8 @@ def convert_mp3(url, email, protocol, host):
         info = youtube.extract_info(url)
         id = info['id']
         title = info['title']
-        url = protocol + '://' + host + '/media/' + id + '.mp3'
+        name = id + '.mp3'
+        url = protocol + '://' + host + '/download/' + name
         send_email.delay(url, email, title)
 
 
@@ -38,8 +39,8 @@ def send_email(url, email, title):
     send_mail(
         'Youtube Video Converter',
         'The link is below',
-        EMAIL_HOST_USER,
-        [email],
-        fail_silently=True,
-        html_message=html_message
-    )
+         EMAIL_HOST_USER,
+         [email],
+         fail_silently=True,
+         html_message=html_message
+     )

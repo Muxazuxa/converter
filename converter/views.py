@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from .forms import DataForm
-from .models import Data
 from .tasks import convert_mp3
+from video_converter import settings
+import os
+from django.conf import settings
+from django.http import HttpResponse, Http404
 
 # Create your views here.
 
@@ -19,4 +22,11 @@ def converter(request):
     return render(request, 'converter/download.html', {'form': form})
 
 
-
+def download(request, name):
+    file_path = os.path.join(settings.MEDIA_ROOT, name)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/force-download")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
