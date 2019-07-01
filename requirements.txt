@@ -3,7 +3,11 @@ billiard==3.6.0.0
 celery==4.3.0
 Django==2.2.1
 django-ffmpeg==0.0.14
+django-redis==4.10.0
+ffmpeg==1.4
 kombu==4.5.0
+psycopg2==2.8.3
+psycopg2-binary==2.8.3
 python-decouple==3.1
 pytz==2019.1
 redis==3.2.1
