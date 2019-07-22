@@ -2,20 +2,18 @@ version: '3'
 
 services:
   db:
-    image: 'postgres:alpine'
+    image: 'postgres:11.4'
 
     volumes:
       - ./database:/var/lib/postgresql
     env_file:
       - .env
   redis:
-    image: "redis:alpine"
+    image: "redis:5.0.5"
 
   web:
     build: .
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/converter
     env_file:
       - .env
     ports:
@@ -27,8 +25,6 @@ services:
   celery:
     build: .
     command: celery worker -A video_converter --loglevel=debug --concurrency=4
-    volumes:
-      - .:/converter
     depends_on:
       - db
       - redis
