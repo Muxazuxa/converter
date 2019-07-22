@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "61574a128bc6507daffd93b6f95531eeec1b133e1bdb8560730e4e2e1d9030e8"
+            "sha256": "229e83774d9d1a4fb4a8b8cfb84f945f976109b5adac109bf71fd64680f138b3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -46,6 +46,14 @@
             ],
             "index": "pypi",
             "version": "==2.2.1"
+        },
+        "django-environ": {
+            "hashes": [
+                "sha256:6c9d87660142608f63ec7d5ce5564c49b603ea8ff25da595fd6098f6dc82afde",
+                "sha256:c57b3c11ec1f319d9474e3e5a79134f40174b17c7cc024bbb2fad84646b120c4"
+            ],
+            "index": "pypi",
+            "version": "==0.4.5"
         },
         "django-ffmpeg": {
             "hashes": [

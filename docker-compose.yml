@@ -25,9 +25,9 @@ services:
   celery:
     build: .
     command: celery worker -A video_converter --loglevel=debug --concurrency=4
+    env_file:
+      - .env
     depends_on:
       - db
       - redis
 
-volumes:
-  database:
