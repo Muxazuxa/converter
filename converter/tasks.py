@@ -1,4 +1,4 @@
-from django.core.mail  import send_mail
+from django.core.mail import send_mail
 from video_converter.celery import app
 import youtube_dl
 from django.template import loader
