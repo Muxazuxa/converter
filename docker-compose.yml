@@ -6,8 +6,6 @@ services:
 
     volumes:
       - ./database:/var/lib/postgresql
-    env_file:
-      - .env
   redis:
     image: "redis:5.0.5"
 
@@ -21,9 +19,12 @@ services:
     depends_on:
       - db
       - redis
+      - celery
 
   celery:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: celery worker -A video_converter --loglevel=debug --concurrency=4
     env_file:
       - .env

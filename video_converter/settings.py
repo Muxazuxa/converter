@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import environ
+
 env = environ.Env(
     DEBUG=(bool, False)
 )
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.contenttypes',
     'converter',
     'ffmpeg',
 ]
@@ -46,10 +48,27 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+            ],
+        },
     },
 ]
 
 WSGI_APPLICATION = 'video_converter.wsgi.application'
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432
+    }
+}
 
 
 LANGUAGE_CODE = 'en-us'
@@ -66,7 +85,7 @@ MEDIA_URL = '/media/'
 
 # REDIS SETTINGS
 
-REDIS_HOST = 'redis'
+REDIS_HOST = 'localhost'
 REDIS_PORT = '6379'
 BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 BROKER_TRANSPORT_OPTIONS = {'visability_timeout': 3600}
