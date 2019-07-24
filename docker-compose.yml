@@ -9,6 +9,15 @@ services:
   redis:
     image: "redis:5.0.5"
 
+  celery:
+    build: .
+    command: celery worker -A video_converter --loglevel=debug --concurrency=4
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
   web:
     build: .
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
@@ -19,16 +28,3 @@ services:
     depends_on:
       - db
       - redis
-      - celery
-
-  celery:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: celery worker -A video_converter --loglevel=debug --concurrency=4
-    env_file:
-      - .env
-    depends_on:
-      - db
-      - redis
-

@@ -13,9 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import environ
 
-env = environ.Env(
-    DEBUG=(bool, False)
-)
+env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -94,7 +92,7 @@ CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 # EMAIL SETTINGS
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = env('EMAIL_HOST', defaul='smtp.gmail.com')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
