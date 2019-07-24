@@ -11,4 +11,4 @@ ADD . /conv/
 RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install --system
-RUN apt-get update && apt-get install -y ffmpeg && apt-get install django-environ
+RUN apt-get update && apt-get install -y ffmpeg

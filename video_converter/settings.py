@@ -83,7 +83,7 @@ MEDIA_URL = '/media/'
 
 # REDIS SETTINGS
 
-REDIS_HOST = 'localhost'
+REDIS_HOST = 'redis'
 REDIS_PORT = '6379'
 BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 BROKER_TRANSPORT_OPTIONS = {'visability_timeout': 3600}
@@ -92,7 +92,7 @@ CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 # EMAIL SETTINGS
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = env('EMAIL_HOST', defaul='smtp.gmail.com')
+EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
