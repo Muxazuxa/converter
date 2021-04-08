@@ -1,11 +1,11 @@
--i https://pypi.org/simple
+-i https://pypi.org/simple/
 amqp==2.4.2
 billiard==3.6.0.0
 celery==4.3.0
 django-environ==0.4.5
 django-ffmpeg==0.0.14
 django-redis==4.10.0
-django==2.2.1
+django==2.2.20
 ffmpeg==1.4
 kombu==4.5.0
 psycopg2-binary==2.8.3
